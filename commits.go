@@ -16,7 +16,7 @@ func printCommits(ctx context.Context, headDate, tailDate time.Time) string {
 }
 
 func fetchCommits(ctx context.Context, headDate time.Time) []*github.RepositoryCommit {
-	// FIXME:暂时只取 100 个PR（有可能30天的PR是超过100的），后续再优化
+	// FIXME:暂时只取 100 个PR（有可能30天的commits是超过100的），后续再优化
 	listOpts := github.ListOptions{PerPage: 100}
 	opts := &github.CommitsListOptions{SHA: "master", Since: headDate, ListOptions: listOpts}
 
