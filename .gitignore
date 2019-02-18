@@ -12,3 +12,4 @@
 *.out
 weekly_digest
 .idea/***
+*.log
