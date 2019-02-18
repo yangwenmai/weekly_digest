@@ -24,39 +24,41 @@ var (
 
 const timeLayout = "2006-01-02 15:04:05"
 
-func init() {
-	client = NewClient()
-}
-
 func main() {
 	flag.Parse()
 	checkParams()
 
 	tailDate, _ := time.Parse(timeLayout, *endDate)
 	headDate := tailDate.Add(time.Duration(-*interval*24) * time.Hour)
-	// create a issue
+
 	title := fmt.Sprintf("Weekly Digest (%d %s, %d - %d %s, %d)",
 		headDate.Day(), headDate.Month(), headDate.Year(), tailDate.Day(), tailDate.Month(), tailDate.Year())
 
-	pullRequestsString := printPullRequests(headDate, tailDate)
+	ctx := context.Background()
+	client = NewClient(ctx)
+	pullRequestsString := printPullRequests(ctx, headDate, tailDate)
 	body := ""
 	bodyHead := fmt.Sprintf("Here's the **Weekly Digest** for [*%s/%s*](https://github.com/%s/%s):\n", *owner, *repo, *owner, *repo)
-
 	body += bodyHead
-
 	if len(pullRequestsString) > 0 {
 		body += "\n --- \n"
 		body += pullRequestsString
 	}
+	commitsString := printCommits(ctx, headDate, tailDate)
+	if len(commitsString) > 0 {
+		body += "\n --- \n"
+		body += commitsString
+	}
 	body += "\n --- \n"
 	body += "\n"
 
-	fmt.Println(title, body)
-	// createIssue(title, body, "", []string{"weekly-digest"})
+	// fmt.Println(title, body)
+
+	// create a issue
+	createIssue(title, body, "", []string{"weekly-digest"})
 }
 
-func NewClient() *github.Client {
-	ctx := context.Background()
+func NewClient(ctx context.Context) *github.Client {
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: *accessToken},
 	)
