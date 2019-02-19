@@ -58,7 +58,7 @@ func main() {
 	createIssue(title, body, "", []string{"weekly-digest"})
 }
 
-// new a github.Client
+// Create a new *github.Client
 func NewClient(ctx context.Context) *github.Client {
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: *accessToken},
