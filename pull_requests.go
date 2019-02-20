@@ -16,8 +16,8 @@ func printPullRequests(ctx context.Context, headDate, tailDate time.Time) string
 }
 
 func fetchPRS(ctx context.Context) []*github.PullRequest {
-	// FIXME:暂时只取 100 个PR（有可能30天的PR是超过100的），后续再优化
-	listOpts := github.ListOptions{PerPage: 100}
+	// FIXME:暂时只取 200 个PR（有可能条件范围内的 PR 是超过 200 的），后续再优化
+	listOpts := github.ListOptions{PerPage: 200}
 	opts := &github.PullRequestListOptions{State: "all", ListOptions: listOpts}
 
 	prs, _, err := client.PullRequests.List(ctx, *owner, *repo, opts)
