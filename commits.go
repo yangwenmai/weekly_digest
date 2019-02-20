@@ -9,10 +9,10 @@ import (
 	"github.com/google/go-github/github"
 )
 
-func printCommits(ctx context.Context, headDate, tailDate time.Time) string {
+func printCommits(ctx context.Context, headDate, tailDate time.Time) (string, []*github.RepositoryCommit) {
 	commits := fetchCommits(ctx, headDate)
 	commits = filterCommits(commits, headDate, tailDate)
-	return wrapCommitsReport(commits, headDate, tailDate, formatWords())
+	return wrapCommitsReport(commits, headDate, tailDate, formatWords()), commits
 }
 
 func fetchCommits(ctx context.Context, headDate time.Time) []*github.RepositoryCommit {
