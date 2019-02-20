@@ -44,10 +44,20 @@ func main() {
 		body += "\n --- \n"
 		body += pullRequestsString
 	}
-	commitsString := printCommits(ctx, headDate, tailDate)
+	commitsString, commits := printCommits(ctx, headDate, tailDate)
 	if len(commitsString) > 0 {
 		body += "\n --- \n"
 		body += commitsString
+	}
+	releasesString := printReleases(ctx, headDate, tailDate)
+	if len(releasesString) > 0 {
+		body += "\n --- \n"
+		body += releasesString
+	}
+	contributorsString := printContributors(ctx, headDate, tailDate, commits)
+	if len(contributorsString) > 0 {
+		body += "\n --- \n"
+		body += contributorsString
 	}
 	body += "\n --- \n"
 	body += "\n"
