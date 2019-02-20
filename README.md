@@ -51,12 +51,12 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:$PATH
 - You can `export access_token=xxx` in your `~/.zshrc` or `~/bash_profile`
 - You must be set `SHELL=/bin/bash`、`PATH=XXX`、`source ~/.zshrc` in crontab.
 
-## Reference
+# Reference
 
 1. [Github Pull Request API](https://developer.github.com/v3/pulls/)
 2. [Create Your Personal Access Token](https://github.com/settings/tokens/new)
 
-## Credits 
+# Credits 
 
 This project is developed and maintained by [yangwenmai](https://github.com/yangwenmai).
 
