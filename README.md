@@ -31,7 +31,7 @@ $ go build
 $ ./weekly_disgest --access_token=<your personal github access_token> --owner=yangwenmai --repo=weekly_digest --end_date="2019-02-20 08:00:00" --interval=7
 ```
 
-或者：
+or：
 
 ```bash
 $ export access_token=xxx
