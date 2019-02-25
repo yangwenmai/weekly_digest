@@ -132,9 +132,14 @@ func createIssue(title, body, assignee string, labels []string) *github.Issue {
 		Labels:   &labels,
 	}
 
-	issue, _, err := client.Issues.Create(ctx, *owner, *repo, input)
+	issue, resp, err := client.Issues.Create(ctx, *owner, *repo, input)
 	if err != nil {
 		panic(err)
+	}
+	if resp.StatusCode == 200 {
+		fmt.Println("create issue success!")
+	} else {
+		fmt.Println("create issue failed!")
 	}
 	return issue
 }
