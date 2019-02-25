@@ -16,6 +16,9 @@ func printContributors(ctx context.Context, headDate, tailDate time.Time, commit
 func filterContributors(commits []*github.RepositoryCommit) []*github.Contributor {
 	contributors := []*github.Contributor{}
 	for _, r := range commits {
+		if r == nil || r.Author == nil {
+			continue
+		}
 		contributor := &github.Contributor{}
 		contributor.Login = r.Author.Login
 		contributor.HTMLURL = r.Author.HTMLURL
