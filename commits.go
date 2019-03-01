@@ -31,9 +31,8 @@ func filterCommits(commits []*github.RepositoryCommit, headDate, tailDate time.T
 	intervalCommits := []*github.RepositoryCommit{}
 
 	for _, commit := range commits {
-		if commit.Commit.GetCommitter().Date.After(headDate) && commit.Commit.GetCommitter().Date.Before(tailDate) {
+		if commit.Author != nil && commit.Commit.GetCommitter().Date.After(headDate) && commit.Commit.GetCommitter().Date.Before(tailDate) {
 			intervalCommits = append(intervalCommits, commit)
-			continue
 		}
 	}
 	return intervalCommits
