@@ -101,13 +101,10 @@ func formatWords() string {
 	switch *interval {
 	case 7:
 		lastStr = "weeks"
-		break
 	case 14:
 		lastStr = "2 weeks"
-		break
 	case 21:
 		lastStr = "3 weeks"
-		break
 	case 30:
 		lastStr = "months"
 		break
