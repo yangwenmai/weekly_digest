@@ -107,7 +107,6 @@ func formatWords() string {
 		lastStr = "3 weeks"
 	case 30:
 		lastStr = "months"
-		break
 	default:
 		lastStr = fmt.Sprintf("%d days", *interval)
 	}
