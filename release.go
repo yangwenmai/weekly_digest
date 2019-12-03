@@ -31,7 +31,6 @@ func filterReleases(releases []*github.RepositoryRelease, headDate, tailDate tim
 	for _, r := range releases {
 		if r.GetPublishedAt().After(headDate) && r.GetPublishedAt().Before(tailDate) {
 			intervalReleases = append(intervalReleases, r)
-			continue
 		}
 	}
 	return intervalReleases
