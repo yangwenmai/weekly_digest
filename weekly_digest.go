@@ -66,6 +66,7 @@ func main() {
 
 	// create a issue
 	createIssue(title, body, "", []string{"weekly-digest"})
+	return
 }
 
 // Create a new *github.Client
@@ -135,7 +136,7 @@ func createIssue(title, body, assignee string, labels []string) *github.Issue {
 	if resp.StatusCode == 200 {
 		fmt.Println("create issue success!")
 	} else {
-		fmt.Println("create issue failed!")
+		fmt.Println("create issue failed!", resp.StatusCode, resp)
 	}
 	return issue
 }
